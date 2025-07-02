@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Bulldozer Buffet</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #222;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 20px 0 5px;
+      font-size: 28px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    form {
+      background-color: #111;
+      padding: 20px;
+      margin: 30px auto;
+      width: 350px;
+      border-radius: 10px;
+    }
+    input, textarea, select {
+      width: 95%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #555;
+      background-color: #222;
+      color: white;
+      direction: rtl;
+    }
+    input::placeholder, textarea::placeholder {
+      text-align: right;
+    }
+    button[type="button"] {
+      background-color: #000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    button[type="button"]:hover {
+      background-color: #444;
+      transition: 0.3s;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #000;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>☕ Bulldozer Buffet</h1>
+<div class="subtitle">by Amer Zayed</div>
+
+<form onsubmit="sendToWhatsApp(); return false;">
+  <h2>طلبك</h2>
+  <input type="text" id="name" placeholder="الاسم" required>
+  <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+  
+  <label for="drink">اختيار المشروب:</label>
+  <select id="drink" required>
+    <option value="" disabled selected>اختر مشروباً</option>
+    <option>قهوة تركي</option>
+    <option>كابتشينو</option>
+    <option>نسكافيه</option>
+    <option>قهوة جولد</option>
+    <option>شاي كرك</option>
+    <option>شاي أخضر</option>
+    <option>شاي أحمر</option>
+    <option>بابونج</option>
+    <option>زهورات</option>
+    <option>يانسون</option>
+  </select>
+
+  <label for="sweet">اختيار السكاكر:</label>
+  <select id="sweet" required>
+    <option value="" disabled selected>اختر نوع سكاكر</option>
+    <option>بسكويت</option>
+    <option>معمول</option>
+    <option>كيك</option>
+    <option>شوكولاتة</option>
+    <option>شوفان</option>
+  </select>
+
+  <textarea id="notes" placeholder="ملاحظات إضافية (اختياري)"></textarea>
+  <button type="button" onclick="sendToWhatsApp()">إرسال الطلب عبر واتساب</button>
+</form>
+
+<footer>
+  📍 الطلبات متاحة داخل البوفيه فقط | للاستفسار: 0791909760
+</footer>
+
+<script>
+  function sendToWhatsApp() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const drink = document.getElementById("drink").value;
+    const sweet = document.getElementById("sweet").value;
+    const notes = document.getElementById("notes").value;
+
+    const message = `طلب جديد من بوفيه البلدوزر:%0A
+🧑 الاسم: ${name}%0A
+📞 الهاتف: ${phone}%0A
+🥤 المشروب: ${drink}%0A
+🍬 السكاكر: ${sweet}%0A
+📝 ملاحظات: ${notes ? notes : 'لا يوجد'}%0A`;
+
+    const phoneNumber = "962791909760";
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(url, "_blank");
+  }
+</script>
+
+</body>
+</html>
